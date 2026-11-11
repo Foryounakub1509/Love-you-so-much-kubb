@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ขอโทษนะ 💌</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500&display=swap">
+<style>
+:root{--bg1:#ffe3ec;--bg2:#ffc9dc;--card:rgba(255,255,255,.78);--text:#5a2a3c;--muted:#9a6179;--accent:#ff5d8f;--accent2:#ff8fb1;--shadow:0 20px 50px rgba(255,93,143,.25);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#2a1220;--bg2:#4a1f37;--card:rgba(60,28,46,.78);--text:#ffe6ef;--muted:#e2a9be;--shadow:0 20px 50px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--bg1:#2a1220;--bg2:#4a1f37;--card:rgba(60,28,46,.78);--text:#ffe6ef;--muted:#e2a9be;--shadow:0 20px 50px rgba(0,0,0,.4)}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{font-family:'Mitr','Noto Sans Thai',sans-serif;color:var(--text);background:linear-gradient(160deg,var(--bg1),var(--bg2));overflow:hidden;display:flex;align-items:center;justify-content:center;padding:20px}
+.heart{position:fixed;bottom:-40px;pointer-events:none;opacity:.7;animation:rise linear forwards;z-index:0}
+@keyframes rise{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+.card{position:relative;z-index:1;width:100%;max-width:380px;min-height:380px;background:var(--card);border-radius:28px;box-shadow:var(--shadow);padding:34px 26px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+.emoji{font-size:64px;animation:beat 1.4s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+h1{font-weight:500;font-size:28px;margin:0}
+p{font-weight:300;font-size:17px;line-height:1.8;margin:0;color:var(--text)}
+.sub{color:var(--muted);font-size:14px}
+.stage{display:none;flex-direction:column;align-items:center;gap:18px;animation:fade .7s ease}
+.stage.on{display:flex}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+button{font-family:inherit;font-size:17px;border:0;border-radius:999px;padding:13px 30px;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 8px 20px rgba(255,93,143,.4);transition:transform .2s}
+button:active{transform:scale(.95)}
+.row{display:flex;gap:14px;align-items:center;justify-content:center;min-height:60px;flex-wrap:wrap}
+#yes{transition:font-size .3s,padding .3s}
+#no{background:transparent;color:var(--muted);box-shadow:none;border:1.5px solid var(--muted);font-size:15px;padding:10px 20px}
+.dots{display:flex;gap:6px}.dots i{width:7px;height:7px;border-radius:50%;background:var(--accent2);opacity:.35}.dots i.a{opacity:1}
+.env{position:relative;width:240px;height:160px;cursor:pointer;margin:104px 0 14px}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.env::before{content:"";position:absolute;inset:0;background:#f19bb9;border-radius:0 0 10px 10px;box-shadow:0 14px 30px rgba(255,93,143,.35)}
+.letter{position:absolute;left:14px;right:14px;top:20px;height:140px;background:#fffaf5;border-radius:8px;display:flex;align-items:flex-start;justify-content:center;padding-top:18px;color:#b04a6c;font-size:15px;transition:transform .9s .6s ease;z-index:1}
+.front{position:absolute;inset:0;z-index:2;background:#ffb8d0;border-radius:0 0 10px 10px}
+.flap{position:absolute;inset:0;z-index:3;background:#ff8fb1;clip-path:polygon(0 0,100% 0,50% 58%);transform-origin:top;transition:transform .6s ease,z-index 0s .3s}
+.seal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:4;font-size:30px;transition:opacity .3s}
+.env.open .flap{transform:scaleY(-1);z-index:0}
+.env.open .letter{transform:translateY(-105px)}
+#s0{animation:none}
+#s0 h1{position:relative;z-index:5}
+.env.open .seal{opacity:0}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="stage on" id="s0">
+    <h1>มีจดหมายถึงหนู</h1>
+    <div class="env" id="env" onclick="openEnv()">
+      <div class="letter">ถึงคนที่พี่รักที่สุด 💗</div>
+      <div class="front"></div>
+      <div class="flap"></div>
+      <div class="seal">❤️</div>
+    </div>
+    <p class="sub">แตะซองเพื่อเปิดอ่านนะ</p>
+  </div>
+  <div class="stage" id="s1">
+    <div class="emoji">🥺</div>
+    <h1>ขอโทษนะ</h1>
+    <p>พี่รู้ว่าทำให้หนูเสียใจ แต่พี่ไม่รู้ว่าตอนนี้หนูรู้สึกแย่หรือไม่โอเคขนาดไหน แล้วก็จะหายมั้ยก็ไม่รู้ แต่พี่ก็ขอโทษเรื่องที่ทำตัวไม่น่ารักหรือทำอะไรแย่ๆใส่กับหนูบ่อยๆแบบนี้นะคะ<br>พี่ไม่ได้อยากให้เป็นแบบนั้นเลยเพราะพี่ก็รักหนูมากๆจริงๆไม่อยากทำตัวแย่ๆไม่น่ารัก อยากให้อยู่ด้วนกันนานๆอยากให้มีความสุขไปด้วยกันตลอดนะ จะให้อภัยหรือไม่พี่ก็อยากบอกว่ ขอโทษอะไรที่ทำผิดไปแล้วพี่ก็รู้สึกผิดตลอดนะที่ทำอะไรแย่ๆใส่ไม่เคยไม่รู้สึกผิดเลยถึงบ้างอันที่เธอบอกว่าไม่ต้องรู้สึกผิดหรืออะไรก็ตาม เพราะเค้าก็ไม่อยากทำตัวแย่ๆไม่น่ารักใส่ต่อให้ไม่ตั้งใจก็ตามอะ</p>
+    <button onclick="go(2)">ต่อไป</button>
+  </div>
+  <div class="stage" id="s2">
+    <div class="emoji">🌷</div>
+    <h1>พี่จะปรับปรุงตัวเองเพื่อหนูให้ได้นะ</h1>
+    <p>พี่จะฟังหนูให้มากขึ้นใส่ใจหนูให้มากๆกว่าเดิมให้มากๆเพราะหนูก็สำคัญกับพี่มากๆจริงๆเลยอะไม่อยากเสียไปเลยจริงๆค่ะ</p>
+    <button onclick="go(3)">ต่อไป</button>
+  </div>
+  <div class="stage" id="s3">
+    <div class="emoji">💗</div>
+    <h1>รับคำขอโทษของพี่ได้มั้ยคะ?</h1>
+    <div class="row">
+      <button id="yes" onclick="go(4)">ได้สิ 💕</button>
+      <button id="no">ยังก่อน</button>
+    </div>
+    <p class="sub" id="hint"></p>
+  </div>
+  <div class="stage" id="s4">
+    <div class="emoji">🥰</div>
+    <h1>ขอบคุณมากๆเลยนะคะที่รัก</h1>
+    <p>พี่รักหนูมากๆรักที่สุดในโลกนี้รักจริงๆเลยค่ะะ ขอบคุณหนูมากๆเลยจริงๆค่ะะพี่จพทำให้ดีพี่จะปรังปรุงตัวให้ได้เพื่อแฟนคนนี้ที่รักและยอมเค้ามากขนาดนี้ เดี๋ยวอยู่ด้วยกันพาไปซื้อของไปกินของอร่อยๆเยอะๆเลยนะคะะ 🍰</p>
+  </div>
+  <div class="dots" id="dots"><i class="a"></i><i></i><i></i><i></i><i></i></div>
+</div>
+<script>
+var cur=0,tries=0;
+var hints=["ลองใหม่อีกทีนะ 🥹","กดปุ่มใหญ่ๆ ได้เลยนะ","ขอร้องล่ะ 🙏","พี่จะรอจนกว่าหนูจะยอมใจอ่อน 💗"];
+function go(n){
+  document.getElementById('s'+cur).classList.remove('on');
+  document.getElementById('s'+n).classList.add('on');
+  cur=n;
+  var d=document.querySelectorAll('#dots i');
+  for(var i=0;i<d.length;i++)d[i].className=i===n?'a':'';
+  if(n===4)burst();
+}
+function openEnv(){
+  var e=document.getElementById('env');
+  if(e.classList.contains('open'))return;
+  e.classList.add('open');
+  setTimeout(function(){go(1)},1900);
+}
+function heart(emoji,size,dur,left){
+  var h=document.createElement('div');
+  h.className='heart';h.textContent=emoji;
+  h.style.left=left+'vw';h.style.fontSize=size+'px';h.style.animationDuration=dur+'s';
+  document.body.appendChild(h);
+  setTimeout(function(){h.remove()},dur*1000);
+}
+var E=['💗','💖','💕','🌸','💞'];
+setInterval(function(){heart(E[Math.floor(Math.random()*E.length)],14+Math.random()*22,7+Math.random()*6,Math.random()*100)},700);
+function burst(){
+  for(var i=0;i<40;i++)setTimeout(function(){heart(E[Math.floor(Math.random()*E.length)],20+Math.random()*30,3+Math.random()*3,Math.random()*100)},i*70);
+}
+var no=document.getElementById('no'),yes=document.getElementById('yes');
+function dodge(e){
+  if(e)e.preventDefault();
+  tries++;
+  var x=(Math.random()-.5)*160,y=(Math.random()-.5)*120;
+  no.style.transform='translate('+x+'px,'+y+'px)';
+  yes.style.fontSize=Math.min(17+tries*3,34)+'px';
+  yes.style.padding=(13+tries*2)+'px '+(30+tries*4)+'px';
+  document.getElementById('hint').textContent=hints[(tries-1)%hints.length];
+}
+no.addEventListener('mouseenter',dodge);
+no.addEventListener('touchstart',dodge,{passive:false});
+no.addEventListener('click',dodge);
+</script>
+</body>
+</html>
